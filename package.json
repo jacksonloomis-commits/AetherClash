@@ -1,0 +1,10 @@
+{
+  "name": "aetherclash",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AetherClash — original strategy card game, playable browser prototype",
+  "scripts": {
+    "test": "node scripts/run-tests.js",
+    "start": "node scripts/serve.js"
+  }
+}

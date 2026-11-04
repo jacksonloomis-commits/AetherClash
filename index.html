@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AetherClash // Strategic Card Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261101a">
+</head>
+<body>
+  <div id="app">
+    <!-- ============ HOME ============ -->
+    <section id="screen-home" class="screen">
+      <div class="home-wrap">
+        <div class="home-brand">
+          <div class="brand-sigil" id="home-sigil"></div>
+          <h1>AETHER<span>CLASH</span></h1>
+          <p class="tagline">Command the rift. Outthink everything.</p>
+        </div>
+        <div class="profile-bar" id="profile-bar"></div>
+        <nav class="home-menu">
+          <button class="menu-btn primary" data-nav="duel"><span class="mb-title">DUEL</span><span class="mb-sub">Face the Archivist</span></button>
+          <button class="menu-btn" data-nav="practice"><span class="mb-title">PRACTICE</span><span class="mb-sub">Duel with free card access</span></button>
+          <button class="menu-btn" data-nav="deck"><span class="mb-title">DECK BUILDER</span><span class="mb-sub">Forge your 40</span></button>
+          <button class="menu-btn" data-nav="collection"><span class="mb-title">COLLECTION</span><span class="mb-sub">Every card in the rift</span></button>
+          <button class="menu-btn" data-nav="packs"><span class="mb-title">CARD PACKS</span><span class="mb-sub">Open · Craft · Complete</span></button>
+        </nav>
+        <p class="home-foot">Beta preview · all content unlockable through play · no purchases</p>
+      </div>
+    </section>
+
+    <!-- ============ DUEL ============ -->
+    <section id="screen-duel" class="screen" hidden>
+      <header class="duel-top">
+        <button class="btn ghost" id="btn-concede">⟵ Concede</button>
+        <div class="turn-banner" id="turn-banner"></div>
+        <div class="duel-top-right">
+          <label class="fast-toggle"><input type="checkbox" id="fast-mode"> fast mode</label>
+          <button class="btn ghost" id="btn-log">Log</button>
+        </div>
+      </header>
+      <div class="chain-strip" id="chain-strip"></div>
+      <div class="battlefield" id="battlefield">
+        <div class="side opp">
+          <div class="player-strip" id="strip-p1"></div>
+          <div class="row spell-row" id="row-p1-spells"></div>
+          <div class="row mon-row" id="row-p1-monsters"></div>
+        </div>
+        <div class="field-mid">
+          <div class="mid-left" id="piles-p0"></div>
+          <div class="mid-center" id="phase-box"></div>
+          <div class="mid-right" id="piles-p1"></div>
+        </div>
+        <div class="side mine">
+          <div class="row mon-row" id="row-p0-monsters"></div>
+          <div class="row spell-row" id="row-p0-spells"></div>
+          <div class="player-strip" id="strip-p0"></div>
+        </div>
+      </div>
+      <div class="hand-zone">
+        <div class="hand" id="hand"></div>
+      </div>
+      <div class="action-bar" id="action-bar"></div>
+      <div class="debug-bar" id="debug-bar" hidden></div>
+    </section>
+
+    <!-- ============ DECK BUILDER ============ -->
+    <section id="screen-deck" class="screen" hidden>
+      <header class="screen-head">
+        <button class="btn ghost" data-nav="home">⟵ Home</button>
+        <h2>DECK BUILDER</h2>
+        <div class="deck-slots" id="deck-slots"></div>
+      </header>
+      <div class="deck-wrap">
+        <div class="deck-left">
+          <div class="filter-row" id="deck-filters"></div>
+          <div class="card-grid" id="deck-collection"></div>
+        </div>
+        <div class="deck-right">
+          <div class="deck-status" id="deck-status"></div>
+          <div class="deck-list" id="deck-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COLLECTION ============ -->
+    <section id="screen-collection" class="screen" hidden>
+      <header class="screen-head">
+        <button class="btn ghost" data-nav="home">⟵ Home</button>
+        <h2>COLLECTION</h2>
+        <div class="completion" id="completion"></div>
+      </header>
+      <div class="filter-row" id="col-filters"></div>
+      <div class="card-grid" id="col-grid"></div>
+    </section>
+
+    <!-- ============ PACKS ============ -->
+    <section id="screen-packs" class="screen" hidden>
+      <header class="screen-head">
+        <button class="btn ghost" data-nav="home">⟵ Home</button>
+        <h2>CARD PACKS</h2>
+        <div id="pack-currency"></div>
+      </header>
+      <div class="packs-wrap">
+        <div class="pack-left">
+          <div class="pack-card" id="pack-visual">
+            <div class="pack-face"><span>?</span></div>
+            <button class="btn gold" id="btn-open-pack">OPEN PACK</button>
+            <p class="pack-note" id="pack-note"></p>
+          </div>
+          <div class="odds-box" id="odds-box"></div>
+        </div>
+        <div class="pack-right">
+          <h3>CRAFTING</h3>
+          <div class="shard-balance" id="shard-balance"></div>
+          <div class="craft-grid" id="craft-grid"></div>
+        </div>
+      </div>
+      <div class="pack-reveal" id="pack-reveal" hidden></div>
+    </section>
+  </div>
+
+  <!-- ============ OVERLAYS ============ -->
+  <div id="card-modal" class="modal" hidden></div>
+  <div id="chain-modal" class="modal" hidden></div>
+  <div id="log-modal" class="modal" hidden></div>
+  <div id="toast" hidden></div>
+  <div id="win-overlay" hidden></div>
+
+  <script src="cards.js?v=20261101a"></script>
+  <script src="engine.js?v=20261101a"></script>
+  <script src="ai.js?v=20261101a"></script>
+  <script src="app.js?v=20261101a"></script>
+</body>
+</html>
