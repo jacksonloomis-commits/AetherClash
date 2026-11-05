@@ -1,6 +1,15 @@
 // AetherClash — browser UI. Screens: home, duel, deck builder, collection, packs.
 (function () {
   'use strict';
+  const BUILD = '2026.11.01';
+  const UPDATE_LOG = [
+    { version: '2026.11.01', tag: 'AETHERCLASH BETA', items: [
+      'Playable beta: rules engine with a real chain system (spell speeds 1/2/3, alternating response windows, LIFO resolution, negation, target fizzling, once-per-turn locks)',
+      '53 original cards with structured effect definitions: auras, triggers, quick effects, counter traps, graveyard/banish effects, tribute economy, taunts, ATK copy',
+      'AI opponent with lookahead that plays by identical rules and never touches hidden information (no-cheat tested)',
+      'Deck builder (3 slots, legality validation), collection, pack opening with published odds, duplicate-to-shard crafting, XP/levels, practice card-tester'
+    ] }
+  ];
   const AC = window.ACEngine, DATA = window.ACData, AIC = window.ACAI;
   const $ = (sel) => document.querySelector(sel);
   const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html !== undefined) e.innerHTML = html; return e; };

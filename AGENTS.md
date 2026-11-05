@@ -13,3 +13,7 @@ Rules for every agent and human working on AetherClash. Read this first, every s
 - The AI must never read hidden information (opponent hand, face-down cards it did not place, either deck order).
 - Bump `?v=` cache-bust strings in `index.html` whenever `cards.js`, `engine.js`, `ai.js`, `app.js` or `styles.css` change.
 - Keep `README.md` and `AGENTS.md` current in the same commit as the change.
+
+## Versioning
+- Every shipped change is stamped in the same commit: `BUILD` const + `UPDATE_LOG` entry in `app.js`, a `BUILD <ver> // <TAG>` footer in `index.html`, and a fresh `?v=` cache-bust on all asset tags.
+- Current: BUILD 2026.11.01 // AETHERCLASH BETA, bust `20261101b`.

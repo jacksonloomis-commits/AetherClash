@@ -30,3 +30,7 @@ npm test      # rules-engine suite + AI smoke games (must pass before every push
 - The test suite verifies battle math, chain order, negation, targeting legality, once-per-turn locks, win conditions, state immutability on rejection, a no-cheat check on the AI's information barrier, and full AI-vs-AI matches.
 
 See `AGENTS.md` for the development rules.
+
+## Versioning
+
+Every shipped change stamps `BUILD` + an `UPDATE_LOG` entry in `app.js`, a `BUILD <ver> // <TAG>` footer in `index.html`, and bumps the `?v=` cache-bust on all asset tags — in the same commit. Current build: **2026.11.01 // AETHERCLASH BETA** (bust `20261101b`).

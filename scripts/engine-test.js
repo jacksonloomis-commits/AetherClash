@@ -480,5 +480,15 @@ for (const f of ['cards.js', 'engine.js', 'ai.js']) {
   catch (e) { check(`${f} parses clean`, false, e.message.split('\n')[0]); }
 }
 
+console.log('--- House guards ---');
+const fs = require('fs');
+const APPJS = fs.readFileSync(__dirname + '/../app.js', 'utf8');
+const IDXHTML = fs.readFileSync(__dirname + '/../index.html', 'utf8');
+check('app.js pins BUILD 2026.11.01', APPJS.includes("const BUILD = '2026.11.01'"));
+check('app.js update log leads with AETHERCLASH BETA', APPJS.includes("version: '2026.11.01', tag: 'AETHERCLASH BETA'"));
+check('index.html footer stamps BUILD 2026.11.01 // AETHERCLASH BETA', IDXHTML.includes('BUILD 2026.11.01 // AETHERCLASH BETA'));
+const busts = IDXHTML.match(/\?v=[0-9a-z]+/g) || [];
+check('all 5 asset tags bust at 20261101b', busts.length === 5 && busts.every(t => t === '?v=20261101b'), busts.join(','));
+
 console.log(`\nRESULT: ${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);
